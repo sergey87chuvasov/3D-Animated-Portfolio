@@ -1,23 +1,87 @@
 import './Hero.css';
 import Speech from './Speech';
+import { motion } from 'motion/react';
+
+const awardVariants = {
+  initial: {
+    x: -100,
+    opacity: 0,
+  },
+  animate: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const followVariants = {
+  initial: {
+    y: -100,
+    opacity: 0,
+  },
+  animate: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 1,
+      staggerChildren: 0.2,
+    },
+  },
+};
 
 const Hero = () => {
   return (
     <div className='hero'>
       <div className='hSection left'>
-        <h1 className='hTitle'>
+        <motion.h1
+          className='hTitle'
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+        >
           Hey There, <br /> <span>I'm Serge!</span>
-        </h1>
-        <div className='awards'>
-          <h2>FRONTEND DEVELOPER</h2>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing.</p>
-          <div className='award-list'>
-            <img src='/award1.png' alt='img pic' />
-            <img src='/award2.png' alt='img pic' />
-            <img src='/award3.png' alt='img pic' />
-          </div>
-        </div>
-        <a href='#services' className='scroll'>
+        </motion.h1>
+        <motion.div
+          variants={awardVariants}
+          initial='initial'
+          animate='animate'
+          className='awards'
+        >
+          <motion.h2 variants={awardVariants}>FRONTEND DEVELOPER</motion.h2>
+          <motion.p variants={awardVariants}>
+            Lorem ipsum dolor sit amet consectetur adipisicing.
+          </motion.p>
+          <motion.div variants={awardVariants} className='award-list'>
+            <motion.img
+              variants={awardVariants}
+              src='/award1.png'
+              alt='img pic'
+            />
+            <motion.img
+              variants={awardVariants}
+              src='/award2.png'
+              alt='img pic'
+            />
+            <motion.img
+              variants={awardVariants}
+              src='/award3.png'
+              alt='img pic'
+            />
+          </motion.div>
+        </motion.div>
+        <motion.a
+          animate={{ y: [0, 5], opacity: [0, 1, 0] }}
+          transition={{
+            repeat: Infinity,
+            duration: 4,
+            ease: 'easeInOut',
+          }}
+          href='#services'
+          className='scroll'
+        >
           <svg
             width='50px'
             height='50px'
@@ -30,41 +94,74 @@ const Hero = () => {
               stroke='white'
               strokeWidth='1'
             />
-            <path
+            <motion.path
+              animate={{ y: [0, 5] }}
+              transition={{
+                repeat: Infinity,
+                duration: 4,
+                ease: 'easeInOut',
+              }}
               d='M12 5V8'
               stroke='white'
               strokeWidth='1'
               strokeLinecap='round'
             />
           </svg>
-        </a>
+        </motion.a>
       </div>
       <div className='hSection right'>
-        <div className='follow'>
-          <a href='/'>
+        <motion.div
+          className='follow'
+          variants={followVariants}
+          initial='initial'
+          animate='animate'
+        >
+          <motion.a href='/' variants={followVariants}>
             <img src='/instagram.png' alt='img pic' />
-          </a>
-          <a href='/'>
+          </motion.a>
+          <motion.a href='/' variants={followVariants}>
             <img src='/facebook.png' alt='img pic' />
-          </a>
-          <a href='/'>
+          </motion.a>
+          <motion.a href='/' variants={followVariants}>
             <img src='/youtube.png' alt='img pic' />
-          </a>
-          <div className='followTextContainer'>
+          </motion.a>
+          <motion.div className='followTextContainer' variants={followVariants}>
             <div className='followText'>FOLLOW ME</div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         <Speech />
-        <div className='certificate'>
+        <motion.div
+          className='certificate'
+          animate={{ opacity: [0, 1] }}
+          transition={{ duration: 1 }}
+        >
           <img src='/certificate.png' alt='img pic' />
           LMA CERTIFICED
           <br />
           PROFESSINAL
           <br />
           FRONTEND DEVELOPER
-        </div>
-        <a href='/#contact' className='contactLink'>
-          <div className='contactButton'>
+        </motion.div>
+        <motion.a
+          href='/#contact'
+          className='contactLink'
+          animate={{
+            x: [200, 0],
+            opacity: [0, 1],
+          }}
+          transition={{
+            duration: 2,
+          }}
+        >
+          <motion.div
+            className='contactButton'
+            animate={{ rotate: [0, 360] }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+          >
             <svg viewBox='0 0 200 200' width='150' height='150'>
               <circle cx='100' cy='100' r='90' fill='pink' />
               <path
@@ -95,8 +192,8 @@ const Hero = () => {
                 <polyline points='9 6 18 6 18 15' />
               </svg>
             </div>
-          </div>
-        </a>
+          </motion.div>
+        </motion.a>
       </div>
       <div className='bg'>
         <div className='hImg'>

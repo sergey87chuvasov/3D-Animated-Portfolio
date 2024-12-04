@@ -98,6 +98,11 @@ const Hero = () => {
           </div>
         </a>
       </div>
+      <div className='bg'>
+        <div className='hImg'>
+          <img src='/hero1.png' alt='img pic' />
+        </div>
+      </div>
     </div>
   );
 };

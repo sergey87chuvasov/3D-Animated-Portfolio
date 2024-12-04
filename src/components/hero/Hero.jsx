@@ -17,7 +17,7 @@ const Hero = () => {
             <img src='/award3.png' alt='img pic' />
           </div>
         </div>
-        <a href='#services'>
+        <a href='#services' className='scroll'>
           <svg
             width='50px'
             height='50px'
@@ -50,6 +50,9 @@ const Hero = () => {
           <a href='/'>
             <img src='/youtube.png' alt='img pic' />
           </a>
+          <div className='followTextContainer'>
+            <div className='followText'>FOLLOW ME</div>
+          </div>
         </div>
         <Speech />
         <div className='certificate'>

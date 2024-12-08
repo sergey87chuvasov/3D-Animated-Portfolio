@@ -4,7 +4,7 @@ import MugModelContainer from './mug/MugModelContainer';
 import './Services.css';
 import Counter from './Counter';
 import { motion, useInView } from 'motion/react';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 
 const textVariants = {
   initial: {
@@ -59,6 +59,7 @@ const services = [
 ];
 
 const Services = () => {
+  const [currentServiceId, setCurrentServiceId] = useState(1);
   const ref = useRef();
   const isInView = useInView(ref, { margin: '-200px' });
   return (
@@ -81,6 +82,7 @@ const Services = () => {
               className='service'
               key={service.id}
               variants={listVariants}
+              onClick={() => setCurrentServiceId(service.id)}
             >
               <div className='serviceIcon'>
                 <img src={service.img} alt='icon pic' />
@@ -98,9 +100,13 @@ const Services = () => {
         </div>
       </div>
       <div className='sSection right'>
-        {/* <ComputerModelContainer />
-        <ConsoleModelContainer />
-        <MugModelContainer /> */}
+        {currentServiceId === 1 ? (
+          <ComputerModelContainer />
+        ) : currentServiceId === 2 ? (
+          <MugModelContainer />
+        ) : (
+          <ConsoleModelContainer />
+        )}
       </div>
     </div>
   );
